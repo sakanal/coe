@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/Exam-UserInfoProvider8008" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka8761/pom.xml" />
+        <option value="$PROJECT_DIR$/Exam-Provider9001/pom.xml" />
+        <option value="$PROJECT_DIR$/Exam-Consumer80/pom.xml" />
+        <option value="$PROJECT_DIR$/Exam-Stu-Provider9010/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud-question-server8010/pom.xml" />
+        <option value="$PROJECT_DIR$/coe-provider-clazz-8001/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud-userinfo-server8008/pom.xml" />
+        <option value="$PROJECT_DIR$/Exam-QuestionProvider8010/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Consumer80/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

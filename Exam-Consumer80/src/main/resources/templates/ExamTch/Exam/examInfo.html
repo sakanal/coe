@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>试卷详细信息</title>
+
+        <link rel="stylesheet" href="/static/ElementUI/index.css">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.woff">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.ttf">
+        <link rel="stylesheet" href="/static/css/ExamTch/Exam/examInfo.css">
+    </head>
+    <body class="testBody">
+
+        <div id="container_header">
+<!--            <template th:each="i:${questionMap}">-->
+<!--                <p th:text="${i.getKey()}"></p>-->
+<!--            </template>-->
+<!--            <ul class="pagination" th:each="i: ${#numbers.sequence(1,100)}">-->
+<!--                <li><a th:href="@{'queryAllByClass?sclass='+${myClass}+'&pageNum='+${i}}">[[${i}]]</a></li>-->
+<!--            </ul>-->
+
+            <el-header style="position: fixed;width: 100%;z-index: 100;">
+
+<!--                <el-button style="width: 60px;height: 60px;border-radius:0;padding: 0"  @click="dialogFormVisible = true">-->
+<!--                    <span class="el-icon-plus"></span><br><br>-->
+<!--                    <span>复制试卷</span>-->
+<!--                </el-button>-->
+
+                <el-button style="width: 60px;height: 60px;border-radius:0;padding: 0" onclick="window.close()">
+                    <span class="el-icon-close"></span><br><br>
+                    <span>关闭预览</span>
+                </el-button>
+
+            </el-header>
+
+            <el-dialog title="复制试卷"
+                       :visible.sync="dialogFormVisible"
+                       :close-on-click-modal="false"
+                       :close-on-press-escape="false">
+                <el-form :model="createExam" :inline="true" ref="createExam">
+
+<!--                    <el-form-item label="班级id" prop="clazzId" :label-width="formLabelWidth">-->
+<!--                        <el-input v-model="createExam.clazzId"></el-input>-->
+<!--                    </el-form-item>-->
+
+                    <el-form-item label="班级id" prop="clazzId" :label-width="formLabelWidth">
+                        <el-select v-model="createExam.clazzId" placeholder="请选择">
+                            <template v-for="clazzId in clazzList">
+                                <el-option :label="clazzId.id" :value="clazzId.id"></el-option>
+                            </template>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="课程" prop="courseId" :label-width="formLabelWidth">
+                        <el-select v-model="createExam.courseId" placeholder="请选择">
+                            <template v-for="course in courseList">
+                                <el-option :label="course.name" :value="course.id"></el-option>
+                            </template>
+                        </el-select>
+                    </el-form-item>
+
+                    <el-form-item label="开始时间" prop="startTime" :label-width="formLabelWidth">
+                        <!--                        <el-input v-model="createExam.startTime" autocomplete="off"></el-input>-->
+                        <el-date-picker
+                                v-model="createExam.startTime"
+                                type="datetime"
+                                placeholder="选择日期时间"
+                                value-format="yyyy-MM-dd HH:mm:ss">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="结束时间" prop="endTime" :label-width="formLabelWidth">
+                        <!--                        <el-input v-model="createExam.endTime" autocomplete="off"></el-input>-->
+                        <el-date-picker
+                                v-model="createExam.endTime"
+                                type="datetime"
+                                placeholder="选择日期时间"
+                                value-format="yyyy-MM-dd HH:mm:ss">
+                        </el-date-picker>
+                    </el-form-item>
+
+                    <el-form-item label="试卷题量" prop="quantity" :label-width="formLabelWidth">
+                        <el-input-number v-model="createExam.quantity" :min="1" :max="10" label="试卷题量"></el-input-number>
+                    </el-form-item>
+                </el-form>
+
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="resetCreateForm('createExam'),dialogFormVisible=false">取 消</el-button>
+                    <el-button type="primary" @click="onCreate('createExam')">确 定</el-button>
+                </div>
+            </el-dialog>
+        </div>
+
+        <div id="container_main" class="container_main" style="margin-top: 60px;">
+            <el-container>
+                <el-main>
+                    <el-row :gutter="12">
+                        <el-col :span="4">
+                            <el-card class="box-card">
+                                <div slot="header" class="clearfix">
+                                    <span>试卷信息</span>
+<!--                                    <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>-->
+                                </div>
+                                <div class="text item clearfix">
+                                    试卷id:<p th:text="${examInfo.id}"></p>
+                                    出卷教师:<p th:text="${examInfo.teacher.name}"></p>
+                                    所属课程:<p th:text="${examInfo.course.name}"></p>
+                                    班级id:<p th:text="${examInfo.clazzId}"></p>
+                                </div>
+                            </el-card>
+
+<!--                            <el-backtop icon="error" onclick="window.close()">-->
+<!--                                <el-result class="box-close" icon="error">-->
+<!--                                </el-result>-->
+<!--                            </el-backtop>-->
+
+                        </el-col>
+
+                        <el-col :span="16">
+                            <form th:each="question:${questionMap}">
+    <!--                        <el-row :gutter="12">-->
+<!--                                <el-col :span="16" :offset="4">-->
+                                    <el-card shadow="hover" class="box-card">
+                                        <div slot="header" class="clearfix">
+<!--                                            <span th:text="'第 '+${question.getKey()+' 题'}">题目号</span>-->
+                                            <span th:text="${question.getValue().question}">题目题干</span>
+                                        </div>
+
+                                        <div th:each="answer:${question.getValue().answersMap}"  class="text item">
+    <!--                                        <el-radio th:name="${question.getKey()}" th:label="${answer.getValue().answer}">-->
+    <!--                                            <span th:text="${answer.getValue().id}"></span>-->
+    <!--                                            <span th:text="${answer.getValue().answer}"></span>-->
+    <!--                                        </el-radio>-->
+                                            <label>
+                                                <el-card shadow="hover">
+                                                    <input type="radio" th:name="${question.getKey()}" th:value="${answer.getValue().answer}">
+                                                    <span th:text="${answer.getValue().id}"></span>
+                                                    <span>、</span>
+                                                    <span th:text="${answer.getValue().answer}"></span>
+                                                </el-card>
+                                            </label>
+                                        </div>
+                                    </el-card>
+<!--                                </el-col>-->
+    <!--                        </el-row>-->
+                        </form>
+                        </el-col>
+
+
+                        <el-col :span="4">
+                            <el-card class="box-card">
+                                <div slot="header" class="clearfix">
+                                    <span>试卷信息</span>
+    <!--                                    <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>-->
+                                </div>
+                                <div class="text item">
+                                    开始时间:<p th:text="${examInfo.startTime}"></p>
+                                    结束时间:<p th:text="${examInfo.endTime}"></p>
+                                    考试时间:<p th:text="${examInfo.time}"></p>
+                                    题目量:<p th:text="${examInfo.quantity}"></p>
+                                </div>
+                            </el-card>
+                        </el-col>
+
+                    </el-row>
+                </el-main>
+            </el-container>
+            <el-backtop></el-backtop>
+
+        </div>
+
+
+
+
+        <div id="container_footer">
+            <el-footer>基于SpringCloud的高校在线考试系统</el-footer>
+        </div>
+
+
+
+    </body>
+
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/ElementUI/index.js"></script>
+    <script src="/static/js/ExamTch/Exam/examInfo.js"></script>
+</html>

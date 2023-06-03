@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>测试页面</title>
+    </head>
+    <body>
+        <h1>后端服务提供者测试页面</h1>
+        <h4>条件搜索试卷</h4>
+        <form th:action="@{/getExams}" method="post">
+            试卷id：<input type="text" name="examId"><br>
+            教师id：<input type="text" name="teacherId"><br>
+            班级id：<input type="text" name="clazzId"><br>
+            课程id：<input type="text" name="courseId"><br>
+            题目量：<input type="text" name="quantity"><br>
+            <input type="submit">
+        </form>
+
+    </body>
+</html>

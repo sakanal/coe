@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>班级详细信息</title>
+        <link rel="stylesheet" th:href="@{/static/ElementUI/index.css}">
+        <link rel="icon" th:href="@{/static/ElementUI/fonts/element-icons.woff}">
+        <link rel="icon" th:href="@{/static/ElementUI/fonts/element-icons.ttf}">
+    </head>
+    <body>
+        <div id="clazzInfo">
+            <el-tabs type="border-card">
+                <el-tab-pane label="学生">
+                    <template>
+                        <el-form :inline="true" :model="searchStudent" class="demo-form-inline">
+                            <el-button type="primary" @click="openAddStudentDialogVisible">新增</el-button>
+<!--                            <el-form-item label="学号">-->
+<!--                                <el-input v-model="searchStudent.id" placeholder="学号"></el-input>-->
+<!--                            </el-form-item>-->
+<!--                            <el-form-item label="姓名">-->
+<!--                                <el-input v-model="searchStudent.name" placeholder="姓名"></el-input>-->
+<!--                            </el-form-item>-->
+<!--                            <el-form-item>-->
+<!--                                <el-button type="primary" @click="onStudentSearch">查询</el-button>-->
+<!--                                <el-button @click="resetStudentForm">重置</el-button>-->
+<!--                            </el-form-item>-->
+                        </el-form>
+
+                        <el-dialog
+                                title="加入学生"
+                                :visible.sync="addStudentDialogVisible"
+                                width="30%"
+                                center>
+                            <el-form :model="addStudentInfo">
+                                <el-form-item label="学生" :label-width="'120px'">
+                                    <el-select v-model="addStudentInfo.id" placeholder="请选择学生">
+                                        <template v-for="student in addStudentList">
+                                            <el-option :label="student.name" :value="student.id"></el-option>
+                                        </template>
+<!--                                        <el-option label="区域一" value="shanghai"></el-option>-->
+<!--                                        <el-option label="区域二" value="beijing"></el-option>-->
+                                    </el-select>
+                                </el-form-item>
+                            </el-form>
+                            <span slot="footer" class="dialog-footer">
+                                <el-button @click="addStudentDialogVisible = false">取 消</el-button>
+                                <el-button type="primary" @click="addStudent">确 定</el-button>
+                            </span>
+                        </el-dialog>
+
+                    </template>
+                        <el-table
+                                :data="studentList"
+                                border
+                                style="width: 100%"
+                                height="500">
+                            <el-table-column
+                                    prop="id"
+                                    label="学号"
+                                    width="180">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="name"
+                                    label="姓名"
+                                    width="180">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="age"
+                                    label="年龄">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="sex"
+                                    label="性别">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="birthday"
+                                    label="生日">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="phone"
+                                    label="电话">
+                            </el-table-column>
+                        </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="教师">
+
+<!--                    <template>-->
+<!--                        <el-form :inline="true" :model="searchTeacher" class="demo-form-inline">-->
+<!--                            <el-button type="primary" @click="">新增</el-button>-->
+<!--                            <el-form-item label="编号">-->
+<!--                                <el-input v-model="searchTeacher.id" placeholder="编号"></el-input>-->
+<!--                            </el-form-item>-->
+<!--                            <el-form-item label="姓名">-->
+<!--                                <el-input v-model="searchTeacher.name" placeholder="姓名"></el-input>-->
+<!--                            </el-form-item>-->
+<!--                            <el-form-item>-->
+<!--                                <el-button type="primary" @click="onTeacherSearch">查询</el-button>-->
+<!--                                <el-button @click="resetTeacherForm">重置</el-button>-->
+<!--                            </el-form-item>-->
+<!--                        </el-form>-->
+
+<!--                    </template>-->
+                    <el-table
+                        :data="teacherList"
+                        border
+                        style="width: 100%"
+                        height="500">
+                        <el-table-column
+                                prop="id"
+                                label="教师号"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="name"
+                                label="姓名"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="age"
+                                label="年龄">
+                        </el-table-column>
+                        <el-table-column
+                                prop="sex"
+                                label="性别">
+                        </el-table-column>
+                        <el-table-column
+                                prop="birthday"
+                                label="生日">
+                        </el-table-column>
+                        <el-table-column
+                                prop="phone"
+                                label="电话">
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
+            </el-tabs>
+        </div>
+
+    </body>
+    <script th:src="@{/static/js/vue.js}"></script>
+    <script th:src="@{/static/js/axois.js}"></script>
+    <script th:src="@{/static/ElementUI/index.js}"></script>
+    <script th:src="@{/static/js/ExamTch/Clazz/myClazzInfo.js}"></script>
+</html>

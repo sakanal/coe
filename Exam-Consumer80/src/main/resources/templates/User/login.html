@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <!-- 页面meta -->
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>登录</title>
+
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+
+    <!-- 引入样式 -->
+
+    <link rel="stylesheet" href="/static/ElementUI/index.css">
+
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.css">
+
+    <link rel="stylesheet" href="/static/css/ExamTch/Course/style.css">
+
+</head>
+
+<body class="hold-transition">
+
+    <div id="app">
+
+        <div class="content-header" style="text-align: center;">
+            <h1>登录</h1>
+        </div>
+
+        <div class="app-container">
+
+            <div class="box" style="min-height: 85vh;">
+                <el-row style="margin: 20vh;">
+                    <el-col :span="6" :offset="9">
+                        <el-form ref="dataEditForm" :model="formData" :label-position="'right'" label-width="80px">
+                            <!--                    <el-row>-->
+                            <!--                        <el-col :span="6">-->
+                            <el-form-item label="登录身份" prop="region">
+                                <el-select v-model="formData.region" placeholder="请选择">
+                                    <el-option label="教师" value="teacher"></el-option>
+                                    <el-option label="学生" value="student"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <!--                        </el-col>-->
+                            <!--                    </el-row>-->
+                            <!--                    <el-row>-->
+                            <!--                        <el-col :span="6">-->
+                            <el-form-item label="编号" prop="id">
+                                <el-input v-model="formData.id" placeholder="请输入编号"/>
+                            </el-form-item>
+                            <!--                        </el-col>-->
+                            <!--                    </el-row>-->
+                            <!--                    <el-row>-->
+                            <!--                        <el-col :span="6">-->
+                            <el-form-item label="密码" prop="password">
+                                <el-input placeholder="请输入密码" v-model="formData.password" type="password"></el-input>
+                            </el-form-item>
+                            <!--                        </el-col>-->
+                            <!--                    </el-row>-->
+                            <!--                    <el-row>-->
+                            <!--                        <el-col :span="6">-->
+                            <el-form-item>
+                                <el-button @click="cancel()">注册</el-button>
+                                <el-button type="primary" @click="login()">登录</el-button>
+                            </el-form-item>
+                            <!--                        </el-col>-->
+                            <!--                    </el-row>-->
+                        </el-form>
+                    </el-col>
+                </el-row>
+<!--                <div slot="footer" class="dialog-footer">-->
+<!--                    <el-row type="flex" class="row-bg" justify="space-between">-->
+<!--                        <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>-->
+<!--                        <el-col :span="20">-->
+<!--                                <el-button @click="cancel()">注册</el-button>-->
+<!--                                <el-button type="primary" @click="login()">登录</el-button>-->
+<!--                        </el-col>-->
+<!--                        <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>-->
+<!--                    </el-row>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<!-- 引入组件库 -->
+
+    <script src="/static/js/vue.js"></script>
+
+    <script src="/static/ElementUI/index.js"></script>
+
+    <script type="text/javascript" src="/static/js/jquery-3.6.0.js"></script>
+
+    <script src="/static/js/axois.js"></script>
+
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data:{
+            formData: {},//表单数据
+        },
+
+        methods: {
+
+            //学生登录
+            studentLogin() {
+                axios.post("/students/login",this.formData).then((res)=>{
+                    //判断登录是否成功
+                    if(res.data){
+                        this.$message.success("登录成功！");
+                        window.location.href = "/toStudentIndex";
+                    }
+                    else {
+                        this.$message.error("登录失败!");
+                    }
+                })
+            },
+
+            //教师登录
+            teacherLogin() {
+                axios.post("/teachers/login",this.formData).then((res)=>{
+                    //判断登录是否成功
+                    if(res.data){
+                        this.$message.success("登录成功！");
+                        window.location.href = "/toTeacherIndex";
+                    }
+                    else {
+                        this.$message.error("登录失败!");
+                    }
+                })
+            },
+
+            //判断登录身份
+            login() {
+                if(this.formData.region === "student"){
+                    this.studentLogin();
+                }
+                else {
+                    this.teacherLogin();
+                }
+            },
+
+            //注册
+            cancel(){
+                window.location.href = "/register";
+            },
+        }
+    })
+
+</script>
+
+</html>

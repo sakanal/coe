@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>班级详细信息</title>
+        <link rel="stylesheet" th:href="@{/static/ElementUI/index.css}">
+        <link rel="icon" th:href="@{/static/ElementUI/fonts/element-icons.woff}">
+        <link rel="icon" th:href="@{/static/ElementUI/fonts/element-icons.ttf}">
+    </head>
+    <body>
+        <div id="clazzInfo">
+            <el-tabs type="border-card">
+                <el-tab-pane label="学生"><template>
+                    <el-table
+                            :data="studentList"
+                            border
+                            style="width: 100%"
+                            height="550">
+                        <el-table-column
+                                prop="id"
+                                label="学号"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="name"
+                                label="姓名"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="age"
+                                label="年龄">
+                        </el-table-column>
+                        <el-table-column
+                                prop="sex"
+                                label="性别">
+                        </el-table-column>
+                        <el-table-column
+                                prop="birthday"
+                                label="生日">
+                        </el-table-column>
+                        <el-table-column
+                                prop="phone"
+                                label="电话">
+                        </el-table-column>
+                    </el-table>
+                </template></el-tab-pane>
+                <el-tab-pane label="教师">
+                    <el-table
+                        :data="teacherList"
+                        border
+                        style="width: 100%"
+                        height="550">
+                        <el-table-column
+                                prop="id"
+                                label="教师号"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="name"
+                                label="姓名"
+                                width="180">
+                        </el-table-column>
+                        <el-table-column
+                                prop="age"
+                                label="年龄">
+                        </el-table-column>
+                        <el-table-column
+                                prop="sex"
+                                label="性别">
+                        </el-table-column>
+                        <el-table-column
+                                prop="birthday"
+                                label="生日">
+                        </el-table-column>
+                        <el-table-column
+                                prop="phone"
+                                label="电话">
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
+            </el-tabs>
+        </div>
+
+    </body>
+    <script th:src="@{/static/js/vue.js}"></script>
+    <script th:src="@{/static/js/axois.js}"></script>
+    <script th:src="@{/static/ElementUI/index.js}"></script>
+    <script th:src="@{/static/js/ExamTch/Clazz/clazzInfo.js}"></script>
+</html>

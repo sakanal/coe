@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coe.springcloud.dao.TeacherMapper">
+    <resultMap id="BaseTeaClazz" type="com.coe.springcloud.pojo.TeaClazz">
+        <result column="clazz_id" property="clazzId" jdbcType="INTEGER"/>
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getTeachersIdByClazzId" resultType="java.lang.Long">
+        select teacher_id from `tea_clazz` where clazz_id=#{clazzId}
+    </select>
+    <select id="getTeachersByTeacherId" resultType="com.coe.entities.Teacher">
+        select * from `teacher`
+            <where>
+                id in
+                <foreach collection="teacherIds" item="teacherId" open="(" close=")" separator=",">
+                    #{teacherId}
+                </foreach>
+            </where>
+    </select>
+    <select id="getclassByteacherid" resultMap="BaseTeaClazz">
+        SELECT * FROM tea_clazz WHERE teacher_id=#{id}
+    </select>
+    <select id="getteacherinfo" resultType="com.coe.entities.Teacher">
+        select * from `teacher`
+    </select>
+
+</mapper>

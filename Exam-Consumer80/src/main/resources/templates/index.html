@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>首页</title>
+        <link rel="stylesheet" href="/static/ElementUI/index.css">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.woff">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.ttf">
+<!--        <link rel="stylesheet" href="/static/css/ExamTch/index.css">-->
+        <style type="text/css">
+            body{
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                position: absolute;
+            }
+
+            .el-container{
+                /*min-height: 92vh;*/
+                /*text-align: center;*/
+            }
+
+            .el-header{
+                background-color: #B3C0D1;
+                color: #333;
+                /*text-align: center;*/
+                line-height: 60px;
+            }
+
+            .el-footer {
+                background-color: #B3C0D1;
+                color: #333;
+                text-align: center;
+                line-height: 60px;
+            }
+
+            .el-aside {
+                background-color: #D3DCE6;
+                color: #333;
+                /*text-align: center;*/
+                line-height: 200px;
+            }
+
+            .el-main {
+                background-color: #E9EEF3;
+                color: #333;
+                text-align: center;
+                /*line-height: 30;*/
+                /*margin-top: 20vh;*/
+            }
+
+            body > .el-container {
+                margin-bottom: 40px;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <div id="container_header">
+
+            <el-container>
+                <el-header>
+                    <el-row :gutter="20"  justify="space-between">
+                        <el-col :span="22">
+                            <span>
+                                <el-link th:href="@{/}" :underline="false">首页</el-link>
+                            </span>
+                        </el-col>
+                        <el-col :span="2">
+                            <template v-if="!userFlag">
+                                <span>
+                                    <el-link th:href="@{/login}" :underline="false">登录</el-link>
+                                    <span>·</span>
+                                    <el-link th:href="@{/register}" :underline="false">注册</el-link>
+                                </span>
+                            </template>
+                            <template v-else>
+                                <el-dropdown>
+                                    <el-button type="text">
+                                        <span v-text="userName" style="color: #ffffff"></span>
+                                        <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>
+                                    </el-button>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item>
+                                            <template v-if="!identityFlag">
+                                                <el-link th:href="@{/toStudentIndex}" :underline="false">个人中心</el-link>
+                                            </template>
+                                            <template v-if="identityFlag">
+                                                <el-link th:href="@{/toTeacherIndex}" :underline="false">个人中心</el-link>
+                                            </template>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item>
+                                            <el-button type="text" @click="logout()">退出登录</el-button>
+                                        </el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                                <span>
+<!--                                    <template v-if="!identityFlag">-->
+<!--                                        <el-link th:href="@{/toStudentIndex}" :underline="false">学生个人中心</el-link>-->
+<!--                                    </template>-->
+<!--                                    <template v-if="identityFlag">-->
+<!--                                        <el-link th:href="@{/toTeacherIndex}" :underline="false">教师个人中心</el-link>-->
+<!--                                    </template>-->
+<!--                                    <span v-text="userId"></span>-->
+<!--                                    <el-button type="text" @click="logout()">退出登录</el-button>-->
+                                </span>
+                            </template>
+                        </el-col>
+                    </el-row>
+                </el-header>
+            </el-container>
+        </div>
+        <div id="container_main">
+
+            <el-container style="min-height: 92vh;">
+
+                <el-main>
+<!--                <a th:href="@{/ExamConsumer/}">去教师考试页面</a><br>-->
+<!--                <a th:href="@{/ExamStuConsumer/}">去学生考试页面</a><br>-->
+<!--                <form th:action="@{/login}">-->
+<!--                    id:<input type="text" name="id"><br>-->
+<!--                    <input type="submit">-->
+<!--                </form>-->
+                    <p>本项目由四人共同编写</p>
+                    <p>项目成员：黎海涛、黄威、欧阳燕斌、周福平</p>
+                    <p>黎海涛：完成考试模块</p>
+                    <p>黄威：完成班级模块</p>
+                    <p>欧阳燕斌：完成题库模块和课程模块</p>
+                    <p>周福平：完成登录注册模块和个人信息管理模块</p>
+                    <p></p>
+                </el-main>
+            </el-container>
+        </div>
+
+        <div id="container_footer">
+            <el-footer>footer</el-footer>
+        </div>
+    </body>
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/axois.js"></script>
+    <script src="/static/ElementUI/index.js"></script>
+    <script src="/static/js/index.js"></script>
+
+
+</html>

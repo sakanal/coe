@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>首页</title>
+    </head>
+    <body>
+        <h1>学生试卷客户端首页</h1>
+        <h4>查看试卷</h4>
+        <form th:action="@{/ExamStu/getExams}">
+            班级id：<input type="text" name="clazzId"><br>
+            试卷状态：<br>
+            <input type="radio" name="state" value="-1" checked> 所有试卷<br>
+            <input type="radio" name="state" value="0"> 未开始<br>
+            <input type="radio" name="state" value="1"> 考试中<br>
+            <input type="radio" name="state" value="2"> 已结束<br>
+            页码：<input type="text" name="pageNo"><br>
+            <input type="submit">
+        </form>
+        <h4>进行考试</h4>
+            <form th:action="@{/ExamStu/toExam}" method="post">
+                试卷id；<input type="text" name="examId"><br>
+                学生id；<input type="text" name="studentId"><br>
+                <input type="submit">
+            </form>
+        <h4>查看成绩</h4>
+            <form th:action="@{/ExamStu/getScore}" method="post">
+                学生id：<input type="text" name="studentId"><br>
+                试卷id：<input type="text" name="examId"><br>
+                课程id：<input type="text" name="courseId"><br>
+                班级id：<input type="text" name="clazzId"><br>
+                <input type="submit">
+            </form>
+        <h4>查看答案</h4>
+            <form th:action="@{/ExamStu/getStuAnswers}" method="post">
+                学生id：<input type="text" name="studentId"><br>
+                试卷id：<input type="text" name="examId"><br>
+                <input type="submit">
+            </form>
+    </body>
+</html>

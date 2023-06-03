@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coe.springcloud.dao.ClazzDao">
+    <resultMap id="BaseClazz" type="com.coe.entities.Clazz">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="teacherNumber" column="cla_tea" jdbcType="INTEGER"/>
+        <result property="studentNumber" column="cla_stu" jdbcType="INTEGER"/>
+    </resultMap>
+    <insert id="addClazz">
+        insert into clazz(id) values(#{id})
+    </insert>
+    <insert id="addTeaClazz">
+        insert into tea_clazz(clazz_id, teacher_id) values (#{clazz_id},#{teacher_id})
+    </insert>
+    <update id="updateClazzById">
+        update clazz set cla_tea=#{tnum},cla_stu=#{snum} where id=#{id}
+    </update>
+
+    <delete id="delelebyid" parameterType="int">
+        delete clazz.*,tea_clazz.* FROM clazz LEFT JOIN tea_clazz on clazz.id = tea_clazz.clazz_id
+            where clazz_id = #{id};
+    </delete>
+
+
+    <select id="getClazzById" resultMap="BaseClazz" parameterType="int">
+       select * from `clazz` where id=#{id}
+    </select>
+    <select id="getClazzTeaNumber" resultType="java.lang.Integer">
+        SELECT count(*) FROM tea_clazz where clazz_id =#{id}
+    </select>
+    <select id="getAllClazzId" resultType="java.lang.Integer">
+        select id from clazz
+    </select>
+    <select id="getClaInfo" resultType="com.coe.springcloud.pojo.QueryClazz">
+        select * from clazz
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>试卷详细信息</title>
+
+        <link rel="stylesheet" href="/static/ElementUI/index.css">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.woff">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.ttf">
+        <link rel="stylesheet" href="/static/css/ExamStu/Exam/examInfo.css">
+    </head>
+    <body class="testBody">
+
+        <div id="container_header">
+
+            <el-container style="min-height: 0">
+                <el-header>
+                    <el-row :gutter="20"  justify="space-between">
+                        <el-col :span="22">
+                            <span>
+                                <el-link th:href="@{/}" :underline="false">首页</el-link>
+                            </span>
+                        </el-col>
+                        <el-col :span="2">
+                            <template v-if="!userFlag">
+                                <span>
+                                    <el-link th:href="@{/login}" :underline="false">登录</el-link>
+                                    <span>·</span>
+                                    <el-link th:href="@{/register}" :underline="false">注册</el-link>
+                                </span>
+                            </template>
+                            <template v-else>
+                                <el-dropdown>
+                                    <el-button type="text">
+                                        <span v-text="userName" style="color: #ffffff"></span>
+                                        <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>
+                                    </el-button>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item>
+                                            <template v-if="!identityFlag">
+                                                <el-link th:href="@{/toStudentIndex}" :underline="false">个人中心</el-link>
+                                            </template>
+                                            <template v-if="identityFlag">
+                                                <el-link th:href="@{/toTeacherIndex}" :underline="false">个人中心</el-link>
+                                            </template>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item>
+                                            <el-button type="text" @click="logout()">退出登录</el-button>
+                                        </el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                                <span>
+<!--                                    <template v-if="!identityFlag">-->
+                                    <!--                                        <el-link th:href="@{/toStudentIndex}" :underline="false">学生个人中心</el-link>-->
+                                    <!--                                    </template>-->
+                                    <!--                                    <template v-if="identityFlag">-->
+                                    <!--                                        <el-link th:href="@{/toTeacherIndex}" :underline="false">教师个人中心</el-link>-->
+                                    <!--                                    </template>-->
+                                    <!--                                    <span v-text="userId"></span>-->
+                                    <!--                                    <el-button type="text" @click="logout()">退出登录</el-button>-->
+                                </span>
+                            </template>
+                        </el-col>
+                    </el-row>
+                </el-header>
+            </el-container>
+        </div>
+
+        <div id="container_main" class="container_main">
+            <el-container>
+                <el-main>
+                    <el-row :gutter="12">
+                        <el-col :span="4">
+                            <el-card class="box-card">
+                                <div slot="header" class="clearfix">
+                                    <span>试卷信息</span>
+<!--                                    <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>-->
+                                </div>
+                                <div class="text item clearfix">
+                                    试卷id:<p th:text="${examInfo.id}"></p>
+                                    出卷教师:<p th:text="${examInfo.teacher.name}"></p>
+                                    所属课程:<p th:text="${examInfo.course.name}"></p>
+                                    班级id:<p th:text="${examInfo.clazzId}"></p>
+                                </div>
+                            </el-card>
+
+                        </el-col>
+
+                        <el-col :span="16">
+                            <form method="post" th:action="@{/ExamStuConsumer/overExam}">
+                                <input type="hidden" name="examId" th:value="${examInfo.id}">
+                                <template th:each="question:${questionMap}">
+    <!--                        <el-row :gutter="12">-->
+<!--                                <el-col :span="16" :offset="4">-->
+                                    <el-card shadow="hover" class="box-card">
+                                        <div slot="header" class="clearfix">
+                                            <span th:text="'第 '+${question.getKey()+' 题'}">题目号</span>
+                                            <span th:text="${question.getValue().question}">题目题干</span>
+                                        </div>
+
+                                        <div th:each="answer:${question.getValue().answersMap}"  class="text item">
+    <!--                                        <el-radio th:name="${question.getKey()}" th:label="${answer.getValue().answer}">-->
+    <!--                                            <span th:text="${answer.getValue().id}"></span>-->
+    <!--                                            <span th:text="${answer.getValue().answer}"></span>-->
+    <!--                                        </el-radio>-->
+                                            <label>
+                                                <el-card shadow="hover">
+                                                    <input type="radio" th:name="${question.getKey()}" th:value="${answer.getValue().answer}">
+                                                    <span th:text="${answer.getValue().id}"></span>
+                                                    <span>、</span>
+                                                    <span th:text="${answer.getValue().answer}"></span>
+                                                </el-card>
+                                            </label>
+                                        </div>
+                                    </el-card>
+<!--                                </el-col>-->
+    <!--                        </el-row>-->
+                                </template>
+
+<!--                                <el-form-item>-->
+<!--                                    <el-button type="primary">立即创建</el-button>-->
+<!--                                    <el-button>取消</el-button>-->
+<!--                                </el-form-item>-->
+                                <input type="submit">
+                        </form>
+                        </el-col>
+
+
+                        <el-col :span="4">
+                            <el-card class="box-card">
+                                <div slot="header" class="clearfix">
+                                    <span>试卷信息</span>
+    <!--                                    <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>-->
+                                </div>
+                                <div class="text item">
+                                    开始时间:<p th:text="${examInfo.startTime}"></p>
+                                    结束时间:<p th:text="${examInfo.endTime}"></p>
+                                    考试时间:<p th:text="${examInfo.time}"></p>
+                                    题目量:<p th:text="${examInfo.quantity}"></p>
+                                </div>
+                            </el-card>
+                        </el-col>
+
+                    </el-row>
+                </el-main>
+            </el-container>
+            <el-backtop></el-backtop>
+
+        </div>
+
+
+
+
+        <div id="container_footer">
+            <el-footer>基于SpringCloud的高校在线考试系统</el-footer>
+        </div>
+
+
+
+    </body>
+
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/axois.js"></script>
+    <script src="/static/ElementUI/index.js"></script>
+    <script src="/static/js/ExamStu/Exam/examInfo.js"></script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>查询所有成绩结果</title>
+    </head>
+    <body>
+        <div th:each="score:${scoreList}">
+            <table border="1">
+                <tr>
+                    <th>成绩id</th>
+                    <th>学生id</th>
+                    <th>试卷id</th>
+                    <th>课程id</th>
+                    <th>班级id</th>
+                    <th>成绩</th>
+                </tr>
+                <tr>
+                    <td th:text="${score.getId()}">成绩id</td>
+                    <td th:text="${score.getStudentId()}">学生id</td>
+                    <td th:text="${score.getExamId()}">试卷id</td>
+                    <td th:text="${score.getCourseId()}">课程id</td>
+                    <td th:text="${score.getClazzId()}">班级id</td>
+                    <td th:text="${score.getScore()}">成绩</td>
+                </tr>
+            </table>
+<!--            <table border="1">-->
+<!--                <tr>-->
+<!--                    <th>题号</th>-->
+<!--                    <th>选择的答案</th>-->
+<!--                </tr>-->
+<!--                <tr th:each="answer:${score.getAnswerMap()}">-->
+<!--                    <td th:text="${answer.getKey()}"></td>-->
+<!--                    <td th:text="${answer.getValue()}"></td>-->
+<!--                </tr>-->
+            </table>
+        </div>
+    </body>
+</html>

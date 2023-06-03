@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>试卷基础信息</title>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>试卷id</th>
+                <th>教师id</th>
+                <th>课程id</th>
+                <th>班级id</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>考试时间</th>
+                <th>题目量</th>
+                <th>试卷状态</th>
+            </tr>
+            <tr th:each="exam:${examList}">
+                <td th:text="${exam.id}">试卷id</td>
+                <td th:text="${exam.teacherId}">教师id</td>
+                <td th:text="${exam.courseId}">课程id</td>
+                <td th:text="${exam.clazzId}">班级id</td>
+                <td th:text="${exam.startTime}">开始时间</td>
+                <td th:text="${exam.endTime}">结束时间</td>
+                <td th:text="${exam.time}">考试时间</td>
+                <td th:text="${exam.quantity}">题目量</td>
+                <td th:text="${exam.state}">试卷状态</td>
+            </tr>
+        </table>
+
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>所出试卷的所有成绩</title>
+        <link rel="stylesheet" href="/static/ElementUI/index.css">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.woff">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.ttf">
+        <link rel="icon" href="/static/css/ExamTch/Score/scoreList.css">
+    </head>
+    <body>
+        <div id="scoreList">
+<!--            {{clazzId}}-&#45;&#45;{{examId}}-->
+            <template>
+                <el-table
+                        :data="scoreList"
+                        border
+                        style="width: 100%">
+                    <template slot="empty">
+                        <el-empty :image-size="100" description='暂无数据'></el-empty>
+                    </template>
+                    <el-table-column
+                            prop="clazzId"
+                            label="班级"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="studentId"
+                            label="学号"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="student.name"
+                            label="姓名"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="course.name"
+                            label="课程"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="score"
+                            label="成绩">
+                    </el-table-column>
+                    <el-table-column label="操作">
+                        <template slot-scope="scope">
+                            <el-button
+                                    size="mini"
+                                    @click="toScore(scope.row)">查看详细</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </template>
+        </div>
+    </body>
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/axois.js"></script>
+    <script src="/static/ElementUI/index.js"></script>
+    <script src="/static/js/ExamTch/Score/scoreList.js"></script>
+</html>

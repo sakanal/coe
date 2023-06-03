@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.coe.mapper.CourseMapper">
+    <resultMap id="BaseCourse" type="com.coe.entities.Course">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+<!--        <result property="teacherList" column="teacher_id" jdbcType="BIGINT"/>-->
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,name
+    </sql>
+
+    <select id="getCourseById" resultMap="BaseCourse">
+        select <include refid="Base_Column_List"/> from `course` where id=#{id}
+    </select>
+    <select id="getCourseIdByTeacherId" resultMap="BaseCourse">
+#         select id from `course` where teacher_id=#{teacherId}
+    </select>
+    <select id="getTeacherIdsByCourseId" resultType="java.lang.Long">
+        select teacher_id from `tea_course` where course_id=#{courseId}
+    </select>
+</mapper>

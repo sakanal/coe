@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>解析页面</title>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>成绩id</th>
+                <th>学生id</th>
+                <th>试卷id</th>
+                <th>课程id</th>
+                <th>班级id</th>
+                <th>成绩</th>
+            </tr>
+            <tr>
+                <td th:text="${score.getId()}">成绩id</td>
+                <td th:text="${score.getStudentId()}">学生id</td>
+                <td th:text="${score.getExamId()}">试卷id</td>
+                <td th:text="${score.getCourseId()}">课程id</td>
+                <td th:text="${score.getClazzId()}">班级id</td>
+                <td th:text="${score.getScore()}">成绩</td>
+            </tr>
+        </table>
+    </body>
+    <div th:each="question:${exam.getQuestionMap()}">
+        <p>题目</p>
+        <span th:text="${question.getKey()}"></span>
+        <span th:text="${question.getValue().getQuestion()}"></span><br>
+        <p>选项</p>
+        <div th:each="answer:${question.getValue().getAnswersMap()}">
+            <span th:text="${answer.getValue().getId()}"></span>
+            <span th:text="${answer.getValue().getAnswer()}"></span><br>
+        </div>
+        <div>
+            <p>我的答案</p>
+            <p th:text="${score.getAnswerMap().get(question.getKey())}"></p>
+        </div>
+    </div>
+</html>

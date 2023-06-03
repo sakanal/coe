@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <!-- 页面meta -->
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>注册</title>
+
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+
+    <!-- 引入样式 -->
+
+    <link rel="stylesheet" href="/static/ElementUI/index.css">
+
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.css">
+
+    <link rel="stylesheet" href="/static/css/ExamTch/Course/style.css">
+
+</head>
+
+<body class="hold-transition">
+
+<div id="app">
+
+    <div class="content-header" style="text-align: center;">
+        <h1>注册</h1>
+    </div>
+
+    <div class="app-container">
+
+        <div class="box" style="min-height: 85vh;">
+
+            <el-row style="margin: 5vh;">
+                <el-col :span="6" :offset="9">
+                    <el-form ref="dataEditForm" :model="formData" :rules="rules"  :label-position="'right'" label-width="100px">
+                        <el-form-item label="注册身份" prop="region">
+                            <el-select v-model="formData.region" placeholder="请选择">
+                                <el-option label="教师" value="teacher"></el-option>
+                                <el-option label="学生" value="student"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="编号" prop="id">
+                            <el-input v-model="formData.id"/>
+                        </el-form-item>
+                        <el-form-item label="密码" prop="password">
+                            <el-input v-model="formData.password" show-password/>
+                        </el-form-item>
+                        <el-form-item label="姓名" prop="name">
+                            <el-input v-model="formData.name"/>
+                        </el-form-item>
+                        <el-form-item label="生日" prop="birthday">
+                            <el-date-picker type="date" placeholder="选择日期" v-model="formData.birthday" style="width: 100%;"/>
+                        </el-form-item>
+                        <el-form-item label="年龄" prop="age">
+                            <el-input v-model="formData.age"/>
+                        </el-form-item>
+                        <el-form-item label="性别" prop="sex">
+                            <el-input v-model="formData.sex"/>
+                        </el-form-item>
+                        <el-form-item label="电话" prop="phone">
+                            <el-input v-model="formData.phone"/>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button @click="cancel()">返回</el-button>
+                            <el-button type="primary" @click="register()">注册</el-button>
+                        </el-form-item>
+                    </el-form>
+
+                </el-col>
+            </el-row>
+
+
+
+
+
+            <!--            <el-form ref="dataEditForm" :model="formData" :rules="rules" label-position="right" label-width="100px">-->
+
+<!--                <el-row>-->
+<!--                    <el-col :span="6">-->
+<!--                        <el-form-item label="注册身份" prop="region">-->
+<!--                            <el-select v-model="formData.region" placeholder="请选择">-->
+<!--                                <el-option label="教师" value="teacher"></el-option>-->
+<!--                                <el-option label="学生" value="student"></el-option>-->
+<!--                            </el-select>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
+<!--                </el-row>-->
+
+<!--                <el-row>-->
+<!--                    <el-col :span="6">-->
+<!--                        <el-form-item label="编号" prop="id">-->
+<!--                            <el-input v-model="formData.id"/>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
+<!--                </el-row>-->
+
+<!--                <el-row>-->
+<!--                    <el-col :span="6">-->
+<!--                        <el-form-item label="密码" prop="password">-->
+<!--                            <el-input v-model="formData.password"/>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
+<!--                </el-row>-->
+
+<!--                <el-row>-->
+<!--                    <el-col :span="6">-->
+<!--                        <el-form-item label="姓名" prop="name">-->
+<!--                            <el-input v-model="formData.name"/>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
+<!--                </el-row>-->
+
+<!--                <el-row>-->
+<!--                    <el-col :span="6">-->
+<!--                        <el-form-item label="生日" prop="birthday">-->
+<!--                            <el-date-picker type="date" placeholder="选择日期" v-model="formData.birthday" style="width: 100%;"/>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
+<!--                </el-row>-->
+
+<!--                <el-row>-->
+<!--                    <el-col :span="3">-->
+<!--                        <el-form-item label="年龄" prop="age">-->
+<!--                            <el-input v-model="formData.age"/>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
+
+<!--                    <el-col :span="3">-->
+<!--                        <el-form-item label="性别" prop="sex">-->
+<!--                            <el-input v-model="formData.sex"/>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
+<!--                </el-row>-->
+
+<!--                <el-row>-->
+<!--                    <el-col :span="6">-->
+<!--                        <el-form-item label="电话" prop="phone">-->
+<!--                            <el-input v-model="formData.phone"/>-->
+<!--                        </el-form-item>-->
+<!--                    </el-col>-->
+<!--                </el-row>-->
+
+<!--            </el-form>-->
+
+<!--            <div slot="footer" class="dialog-footer">-->
+
+<!--                <el-button @click="cancel()">返回</el-button>-->
+
+<!--                <el-button type="primary" @click="register()">注册</el-button>-->
+
+<!--            </div>-->
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+<!-- 引入组件库 -->
+
+    <script src="/static/js/vue.js"></script>
+
+    <script src="/static/ElementUI/index.js"></script>
+
+    <script type="text/javascript" src="/static/js/jquery-3.6.0.js"></script>
+
+    <script src="/static/js/axois.js"></script>
+
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data:{
+            formData: {},//表单数据
+            rules: {//校验规则
+                region: [{ required: true, message: '注册身份为必填项', trigger: 'blur' }],
+                id: [{ required: true, message: '编号为必填项', trigger: 'blur' }],
+                password: [{ required: true, message: '密码为必填项', trigger: 'blur' }],
+                name: [{ required: true, message: '姓名为必填项', trigger: 'blur' }]
+            },
+        },
+
+        methods: {
+            //学生注册
+            addStudent() {
+                axios.post("/students/save",this.formData).then((res)=>{
+                    //判断添加是否成功
+                    console.log(res)
+                    if(res.data.code === 200){
+                        this.$message.success("注册成功！");
+                        window.location.href = "/toStudentIndex";
+                    }
+                    else {
+                        this.$message.error(res.data.message);
+                    }
+                });
+            },
+
+            //教师注册
+            addTeacher() {
+                axios.post("/teachers/save",this.formData).then((res)=>{
+                    //判断添加是否成功
+                    console.log(res)
+                    if(res.data.code === 200){
+                        this.$message.success("注册成功！");
+                        window.location.href = "/toTeacherIndex";
+                    }
+                    else {
+                        this.$message.error(res.data.message);
+                    }
+                });
+            },
+
+            //判断注册身份
+            register() {
+                if(this.formData.region === "student"){
+                    this.addStudent();
+                }
+                else {
+                    this.addTeacher();
+                }
+            },
+
+            //返回
+            cancel() {
+                window.location.href = "/login";
+            }
+        }
+    })
+
+</script>
+
+</html>

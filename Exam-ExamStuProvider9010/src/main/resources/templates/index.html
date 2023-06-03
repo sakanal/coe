@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>首页</title>
+    </head>
+    <body>
+        <h1>后端服务提供者测试页面</h1>
+        <h4>查看试卷</h4>
+        <form th:action="@{/ExamStu/getExams}">
+            班级id：<input type="text" name="clazzId"><br>
+            试卷状态：<br>
+            <input type="radio" name="state" id="state-1" value="-1" checked> <label for="state-1">所有试卷</label><br>
+            <input type="radio" name="state" id="state0" value="0"> <label for="state0">未开始</label><br>
+            <input type="radio" name="state" id="state1" value="1"> <label for="state1">考试中</label><br>
+            <input type="radio" name="state" id="state2" value="2"> <label for="state2">已结束</label><br>
+            页码：<input type="text" name="pageNo"><br>
+            <input type="submit">
+        </form>
+        <h4>进行考试</h4>
+        <form th:action="@{/ExamStu/toExam}">
+            试卷id；<input type="text" name="examId"><br>
+            <input type="submit">
+        </form>
+        <h4>查看成绩</h4>
+        <h4>查看答案</h4>
+    </body>
+</html>

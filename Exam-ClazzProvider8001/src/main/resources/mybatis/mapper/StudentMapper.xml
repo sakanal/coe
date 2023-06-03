@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coe.springcloud.dao.StudentMapper">
+
+    <resultMap id="BaseStudent" type="com.coe.entities.Student">
+        <result column="clazz_id" property="clazzId" jdbcType="INTEGER"></result>
+    </resultMap>
+
+    <insert id="addStudent">
+        insert into student(id, password, name, clazz_id) VALUES(#{id}, #{password}, #{name}, #{clazz_id})
+    </insert>
+    <delete id="DeleteStubyId">
+        delete from student where id=#{id}
+    </delete>
+
+    <select id="getStudentIdsByclazzId" resultType="java.lang.Long">
+        select id from `student` where clazz_id=#{clazzId}
+    </select>
+    <select id="getStudentByStudentId" resultMap="BaseStudent">
+        select * from `student`
+        <where>
+            id in
+            <foreach collection="studentIds" item="studentId" open="(" close=")" separator=",">
+                #{studentId}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="getStudentById" resultMap="BaseStudent">
+        select * from `student` where id=#{studentId}
+    </select>
+
+    <select id="getClazzStuNumber" resultType="java.lang.Integer">
+        SELECT count(*) FROM student where clazz_id =#{id}
+    </select>
+    <select id="getAllstudent" resultType="com.coe.springcloud.pojo.studentinfo">
+        select * from student order by clazz_id
+    </select>
+
+
+</mapper>

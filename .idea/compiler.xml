@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eureka8761" />
+        <module name="Exam-UserInfoProvider8008" />
+        <module name="Exam-Consumer80" />
+        <module name="cloud-api-commons" />
+        <module name="Exam-ExamTchProvider9001" />
+        <module name="Exam-ExamStuProvider9010" />
+        <module name="Exam-QuestionProvider8010" />
+        <module name="Exam-ClazzProvider8001" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-client80" target="1.8" />
+      <module name="coe-clazzmanager" target="1.8" />
+      <module name="Consumer80" target="1.8" />
+      <module name="ExamStu-Consumer80" target="1.8" />
+      <module name="Gateway9527" target="1.8" />
+      <module name="questions_service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Exam-Consumer80" options="" />
+      <module name="Exam-ExamStuProvider9010" options="" />
+      <module name="Exam-ExamTchProvider9001" options="" />
+      <module name="ExamStu-Consumer80" options="" />
+      <module name="Gateway9527" options="" />
+    </option>
+  </component>
+</project>

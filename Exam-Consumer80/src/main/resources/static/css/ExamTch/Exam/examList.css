@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.demo-table-expand {
+    font-size: 0;
+    padding-left: 55px;
+
+}
+.demo-table-expand label {
+    width: 90px;
+    color: #99a9bf;
+}
+.demo-table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 50%;
+}
+.pageInfo{
+    position: absolute;
+    bottom: 0;
+}
+

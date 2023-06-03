@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-parent/2.7.0/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Consumer80/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Consumer80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-ClazzProvider8001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-ClazzProvider8001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-Consumer80/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-Consumer80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-ExamStuProvider9010/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-ExamStuProvider9010/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-ExamTchProvider9001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-ExamTchProvider9001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-QuestionProvider8010/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-QuestionProvider8010/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-UserInfoProvider8008/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exam-UserInfoProvider8008/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamStu-Consumer80/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ExamStu-Consumer80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Gateway/Gateway9527/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Gateway9527/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Gateway9527/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-api-commons/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-api-commons/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-client80/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-client80/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/coe-clazzmanager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/coe-clazzmanager/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka8761/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka8761/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/questions_service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/questions_service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

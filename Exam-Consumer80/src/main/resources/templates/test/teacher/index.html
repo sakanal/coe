@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>试卷的增删改查</title>
+    </head>
+    <body>
+        <a th:href="@{/}">返回首页</a>
+        <h1>教师试卷客户端首页</h1>
+        <a th:href="@{/ExamConsumer/getExams}">获取所有试卷基础信息</a><br>
+        <a th:href="@{/ExamConsumer/Exam/1001}">id为1001的试卷详细信息</a><br>
+        <h4>条件搜索试卷</h4>
+        <form th:action="@{/ExamConsumer/getExams}" method="post">
+            试卷id：<input type="text" name="examId"><br>
+            教师id：<input type="text" name="teacherId"><br>
+            班级id：<input type="text" name="clazzId"><br>
+            课程id：<input type="text" name="courseId"><br>
+            题目量：<input type="text" name="quantity"><br>
+            <input type="submit">
+        </form>
+        <h4>发布试卷</h4>
+        <form th:action="@{/ExamConsumer/Exam}" method="post">
+            班级号：<input type="text" name="clazzId"><br>
+            课程ID：<input type="text" name="courseId"><br>
+            题目量：<input type="text" name="quantity"><br>
+            考试开始时间：<input type="datetime-local" name="startTime"><br>
+            考试结束时间：<input type="datetime-local" name="endTime"><br>
+            <input type="submit">
+        </form>
+        <h4>修改试卷</h4>
+        <form th:action="@{/ExamConsumer/Exam}" method="post">
+            <input type="hidden" name="_method" value="put">
+            试卷id：<input type="text" name="examId"><br>
+            教师id：<input type="text" name="teacherId" value="100001"><br>
+            班级号：<input type="text" name="clazzId"><br>
+            课程ID：<input type="text" name="courseId"><br>
+            题目量：<input type="text" name="quantity"><br>
+            考试开始时间：<input type="datetime-local" name="startTime"><br>
+            考试结束时间：<input type="datetime-local" name="endTime"><br>
+            是否重新获取题目：<input type="radio" name="reQuestion" value="0" checked>否<input type="radio" name="reQuestion" value="1">是<br>
+            <input type="submit">
+        </form>
+        <h4>根据试卷id获取试卷模板，根据试卷模板创建试卷</h4>
+        <form th:action="@{/ExamConsumer/createExamFormOld}" method="post">
+            试卷模板id：<input type="text" name="examId"><br><br>
+            教师id：<input type="text" name="teacherId" value="100001"><br>
+            班级号：<input type="text" name="clazzId"><br>
+            课程ID：<input type="text" name="courseId"><br>
+            题目量：<input type="text" name="quantity"><br>
+            考试开始时间：<input type="datetime-local" name="startTime"><br>
+            考试结束时间：<input type="datetime-local" name="endTime"><br>
+            是否重新获取题目：<input type="radio" name="reQuestion" value="0" checked>否<input type="radio" name="reQuestion" value="1">是<br>
+            <input type="submit">
+        </form>
+        <h4>根据试卷id删除试卷</h4>
+        <form th:action="@{/ExamConsumer/deleteExamById}" method="post">
+            <input type="hidden" name="_method" value="delete">
+            试卷id：<input type="text" name="examId"><br>
+            <input type="submit">
+        </form>
+    </body>
+</html>

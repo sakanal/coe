@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>测试</h1>
+        <table border="1">
+            <tr>
+                <th>参数名</th>
+                <th>参数值</th>
+            </tr>
+            <tr th:each="name:${#session.getAttributeNames()}">
+                <td th:text="${name}"></td>
+                <td th:text="${#session.getAttribute(name)}"></td>
+            </tr>
+        </table>
+    </body>
+</html>

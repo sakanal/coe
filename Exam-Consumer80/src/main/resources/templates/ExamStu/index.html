@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>学生页面</title>
+        <link rel="stylesheet" href="/static/ElementUI/index.css">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.woff">
+        <link rel="icon" href="/static/ElementUI/fonts/element-icons.ttf">
+        <link rel="stylesheet" href="/static/css/ExamStu/index.css">
+
+    </head>
+    <body>
+        <div id="container_header">
+
+            <el-container style="min-height: 0">
+                <el-header>
+                    <el-row :gutter="20"  justify="space-between">
+                        <el-col :span="22">
+                            <span>
+                                <el-link th:href="@{/}" :underline="false">首页</el-link>
+                            </span>
+                        </el-col>
+                        <el-col :span="2">
+                            <template v-if="!userFlag">
+                                <span>
+                                    <el-link th:href="@{/login}" :underline="false">登录</el-link>
+                                    <span>·</span>
+                                    <el-link th:href="@{/register}" :underline="false">注册</el-link>
+                                </span>
+                            </template>
+                            <template v-else>
+                                <el-dropdown>
+                                    <el-button type="text">
+                                        <span v-text="userName" style="color: #ffffff"></span>
+                                        <i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>
+                                    </el-button>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item>
+                                            <template v-if="!identityFlag">
+                                                <el-link th:href="@{/toStudentIndex}" :underline="false">个人中心</el-link>
+                                            </template>
+                                            <template v-if="identityFlag">
+                                                <el-link th:href="@{/toTeacherIndex}" :underline="false">个人中心</el-link>
+                                            </template>
+                                        </el-dropdown-item>
+                                        <el-dropdown-item>
+                                            <el-button type="text" @click="logout()">退出登录</el-button>
+                                        </el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                                <span>
+<!--                                    <template v-if="!identityFlag">-->
+                                    <!--                                        <el-link th:href="@{/toStudentIndex}" :underline="false">学生个人中心</el-link>-->
+                                    <!--                                    </template>-->
+                                    <!--                                    <template v-if="identityFlag">-->
+                                    <!--                                        <el-link th:href="@{/toTeacherIndex}" :underline="false">教师个人中心</el-link>-->
+                                    <!--                                    </template>-->
+                                    <!--                                    <span v-text="userId"></span>-->
+                                    <!--                                    <el-button type="text" @click="logout()">退出登录</el-button>-->
+                                </span>
+                            </template>
+                        </el-col>
+                    </el-row>
+                </el-header>
+            </el-container>
+        </div>
+
+        <div id="container_main">
+            <el-container>
+                <el-aside th:width="200px">
+                    <el-row class="tac">
+                        <el-col>
+                            <el-menu
+                                    default-active="1"
+                                    class="el-menu-vertical-demo"
+                                    :unique-opened="true"
+                                    :default-openeds="['1']">
+                                <el-submenu index="1">
+                                    <template slot="title">
+                                        <span>个人中心</span>
+                                    </template>
+                                    <el-menu-item-group>
+                                        <el-menu-item @click="toHref" th:href="@{/students}">
+                                            <span>我的信息</span>
+                                        </el-menu-item>
+                                    </el-menu-item-group>
+                                </el-submenu>
+                                <el-submenu index="2">
+                                    <template slot="title">
+                                        <span>我的试卷</span>
+                                    </template>
+                                    <el-menu-item-group>
+<!--                                        <template slot="title">试卷选项</template>-->
+                                        <el-menu-item @click="toHref" th:href="@{/ExamStuConsumer/toExamList}">
+                                            <span>所有试卷</span>
+                                        </el-menu-item>
+<!--                                        <el-menu-item @click="toHref" th:href="@{/ExamStuConsumer/toSuccess.html}">-->
+<!--                                            <span>success</span>-->
+<!--                                        </el-menu-item>-->
+                                    </el-menu-item-group>
+                                </el-submenu>
+<!--                                <el-submenu index="2">-->
+<!--                                    <template slot="title">-->
+<!--                                        <span>我的成绩</span>-->
+<!--                                    </template>-->
+<!--                                    <el-menu-item-group>-->
+<!--                                        <template slot="title">创建试卷</template>-->
+<!--                                        <el-menu-item @click="toHref" th:href="@{/ExamStuConsumer/toLose.html}">-->
+<!--                                            <span>新试卷</span>-->
+<!--                                        </el-menu-item>-->
+<!--                                    </el-menu-item-group>-->
+                                </el-submenu>
+                            </el-menu>
+                        </el-col>
+                    </el-row>
+                </el-aside>
+                <el-main>
+                    <div id="iframe_div" style="height: 100%; width: 100%">
+                        <iframe id="iframe" name="iframe" th:src="@{/students}" scrolling="auto" frameborder="0" width="100%" height="100%" title="iframe"></iframe>
+                    </div>
+                </el-main>
+            </el-container>
+        </div>
+        <div id="container_footer">
+            <el-footer>基于SpringCloud的高校在线考试系统</el-footer>
+        </div>
+
+    </body>
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/axois.js"></script>
+    <script src="/static/ElementUI/index.js"></script>
+    <script src="/static/js/ExamStu/index.js"></script>
+
+</html>
